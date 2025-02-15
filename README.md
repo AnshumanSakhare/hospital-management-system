@@ -8,7 +8,7 @@ hospital-management-system/
 │   ├── urls.py
 │   ├── wsgi.py
 │   └── asgi.py
-│
+│<br>
 ├── patients/
 │   ├── __init__.py
 │   ├── admin.py
