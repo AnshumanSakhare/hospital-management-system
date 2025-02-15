@@ -52,4 +52,5 @@ hospital-management-system/
 │   └── migrations/
 │
 ├── manage.py
-└── README.md
+├── README.md
+└── .gitignore
