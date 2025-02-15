@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('patient.urls')),
     path('home/', home, name='home'),  # Added home endpoint
+    
 ]
