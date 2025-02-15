@@ -77,10 +77,15 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Change to use SQLite
-        'NAME': BASE_DIR / 'db.sqlite3',  # Path to your SQLite database file
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hospital_db',
+        'USER': 'root',
+        'PASSWORD': 'Pawara@123',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
+
 
 
 
