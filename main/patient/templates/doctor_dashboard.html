@@ -14,10 +14,14 @@
                 <a href='{% url "password_reset" %}' class="auth-btn reset-btn">
                     <i class="fas fa-key"></i> Reset Password
                 </a>
-                <a href='{% url "doctor_dashboard" %}' class="auth-btn dashboard-btn">
-                    <i class="fas fa-tachometer-alt"></i> Doctor Dashboard
+                <a href='{% url "quick_add_patient" %}' class="auth-btn quick-add-btn">
+                    <i class="fas fa-user-plus"></i> Quick Add Patient
+                </a>
+                <a href='{% url "manage_patients" %}' class="auth-btn manage-btn">
+                    <i class="fas fa-users-cog"></i> Manage Patients
                 </a>
             </div>
+
 
         {% endif %}
     </div>
@@ -82,10 +86,16 @@
         color: white;
     }
     
-    .dashboard-btn {
+    .quick-add-btn {
+        background: #9C27B0;
+        color: white;
+    }
+
+    .manage-btn {
         background: #FF9800;
         color: white;
     }
+
 
 
     .auth-btn:hover {
