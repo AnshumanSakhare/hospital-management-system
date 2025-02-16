@@ -108,3 +108,13 @@ def manage_patients(request):
 
     }
     return render(request, 'manage-patients.html', context)
+
+@login_required
+def delete_patient(request, patient_id):
+    try:
+        patient = Patient.objects.get(id=patient_id)
+        patient.delete()
+        messages.success(request, 'Patient deleted successfully!')
+    except Patient.DoesNotExist:
+        messages.error(request, 'Patient not found!')
+    return redirect('manage_patients')

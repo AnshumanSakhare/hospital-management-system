@@ -10,4 +10,5 @@ urlpatterns = [
     path('doctor/dashboard/manage-patients/', views.manage_patients, name='manage_patients'),
     path('doctor/dashboard/quick-add-patient/', views.quick_add_patient, name='quick_add_patient'),
     path('password_reset/', views.password_reset, name='password_reset'),
+    path('doctor/dashboard/manage-patients/delete/<int:patient_id>/', views.delete_patient, name='delete_patient'),
 ]
