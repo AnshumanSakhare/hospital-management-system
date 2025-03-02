@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="auth-container">
+        <div class="logout-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h2 class="auth-title">Successfully Logged Out</h2>
+        <p class="auth-subtitle">Thank you for using the Hospital Management System</p>
+        <a href='{% url "doctor_login" %}' class="auth-btn login-btn">
+            <i class="fas fa-sign-in-alt"></i> Log In Again
+        </a>
+        <a href='{% url "home" %}' class="auth-btn home-btn">
+            <i class="fas fa-home"></i> Return to Home
+        </a>
+    </div>
+</div>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 2rem;
+    }
+
+    .auth-container {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .auth-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .logout-icon {
+        font-size: 4rem;
+        color: #4CAF50;
+        margin-bottom: 1.5rem;
+    }
+
+    .auth-title {
+        margin-bottom: 0.75rem;
+        color: #343a40;
+        font-weight: 600;
+        font-size: 1.8rem;
+    }
+    
+    .auth-subtitle {
+        color: #6c757d;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+    }
+
+    .auth-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        letter-spacing: 0.3px;
+        border: none;
+        margin-bottom: 0.75rem;
+    }
+
+    .login-btn {
+        background: #4CAF50;
+        color: white;
+    }
+
+    .home-btn {
+        background: #f8f9fa;
+        color: #6c757d;
+        border: 1px solid #dee2e6;
+    }
+
+    .home-btn:hover {
+        background: #e9ecef;
+    }
+
+    .auth-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .auth-btn:active {
+        transform: translateY(0);
+    }
+
+    .auth-btn i {
+        margin-right: 0.75rem;
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 576px) {
+        .container {
+            padding: 1rem;
+        }
+        
+        .auth-container {
+            padding: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}

@@ -2,23 +2,25 @@
 {% block content %}
 <div class="container">
     <div class="auth-container">
+        <h2 class="auth-title">Hospital Management System</h2>
         {% if not request.user.is_authenticated %}
+            <p class="auth-subtitle">Please log in to access the system</p>
             <a href='{% url "doctor_login" %}' class="auth-btn login-btn">
                 <i class="fas fa-sign-in-alt"></i> Login
             </a>
         {% else %}
+            <p class="auth-subtitle">Welcome, Dr. {{ request.user.username }}</p>
             <div class="btn-group">
-                <a href='{% url "doctor_logout" %}' class="auth-btn logout-btn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                <a href='{% url "doctor_dashboard" %}' class="auth-btn dashboard-btn">
+                    <i class="fas fa-tachometer-alt"></i> Doctor Dashboard
                 </a>
                 <a href='{% url "password_reset" %}' class="auth-btn reset-btn">
                     <i class="fas fa-key"></i> Reset Password
                 </a>
-                <a href='{% url "doctor_dashboard" %}' class="auth-btn dashboard-btn">
-                    <i class="fas fa-tachometer-alt"></i> Doctor Dashboard
+                <a href='{% url "doctor_logout" %}' class="auth-btn logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
-
         {% endif %}
     </div>
 </div>
@@ -28,43 +30,66 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        padding: 0 1rem;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 2rem;
     }
 
     .auth-container {
         background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         width: 100%;
-        max-width: 400px;
+        max-width: 450px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .auth-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .auth-title {
+        margin-bottom: 0.75rem;
+        color: #343a40;
+        font-weight: 600;
+        font-size: 1.8rem;
+    }
+    
+    .auth-subtitle {
+        color: #6c757d;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
     }
 
     .btn-group {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.75rem;
     }
 
     .auth-btn {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
         padding: 1rem;
         border-radius: 8px;
-        text-align: center;
         text-decoration: none;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 500;
         transition: all 0.3s ease;
-        margin: 0.5rem 0;
+        letter-spacing: 0.3px;
+        border: none;
     }
 
     .login-btn {
@@ -72,29 +97,55 @@
         color: white;
     }
 
-    .logout-btn {
-        background: #f44336;
-        color: white;
-    }
-
-    .reset-btn {
-        background: #2196F3;
-        color: white;
-    }
-    
     .dashboard-btn {
         background: #FF9800;
         color: white;
     }
 
+    .reset-btn {
+        background: #f8f9fa;
+        color: #2196F3;
+        border: 1px solid #2196F3;
+    }
+    
+    .reset-btn:hover {
+        background: #2196F3;
+        color: white;
+    }
+
+    .logout-btn {
+        background: #f8f9fa;
+        color: #dc3545;
+        border: 1px solid #dc3545;
+    }
+
+    .logout-btn:hover {
+        background: #dc3545;
+        color: white;
+    }
 
     .auth-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .auth-btn:active {
+        transform: translateY(0);
     }
 
     .auth-btn i {
-        margin-right: 0.5rem;
+        margin-right: 0.75rem;
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 576px) {
+        .container {
+            padding: 1rem;
+        }
+        
+        .auth-container {
+            padding: 1.5rem;
+        }
     }
 </style>
 {% endblock %}
