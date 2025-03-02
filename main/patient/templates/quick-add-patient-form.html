@@ -1,185 +1,372 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 shadow-sm">
-        <div class="container-fluid">
-            <a href="{% url 'doctor_dashboard' %}" class="btn btn-lg border border-2 border-dark" style="background-color: #4CAF50; color: white; padding: 12px 24px; margin-right: 40px;">
-                <i class="fas fa-tachometer-alt me-2"></i> Dashboard
-            </a>
-            <a href="{% url 'doctor_logout' %}" class="btn btn-lg border border-2 border-dark" style="background-color: #f44336; color: white; padding: 12px 24px;">
-                <i class="fas fa-sign-out-alt me-2"></i> Logout
-            </a>
+    <div class="content-container">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="{% url 'doctor_dashboard' %}" class="nav-btn dashboard-btn">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="{% url 'doctor_logout' %}" class="nav-btn logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </nav>
 
-
-        </div>
-    </nav>
-
-    <div class="card shadow" style="max-width: 1200px; margin: 0 auto;">
-        <div class="card-header bg-primary text-white py-4">
-            <h2 class="card-title mb-0 text-center" style="font-size: 2rem; font-weight: 600;">
-                <i class="fas fa-user-plus me-3"></i>Patient Registration Form
-            </h2>
-        </div>
-
-        <div class="card-body p-4">
-            <form method="POST" action="{% url 'quick_add_patient' %}">
-                {% csrf_token %}
-                <div class="row g-4">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-user-plus"></i> Patient Registration
+                </h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'quick_add_patient' %}">
+                    {% csrf_token %}
+                    
                     <!-- Personal Information Section -->
-                    <div class="col-12 mb-4">
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-light">
-                                <h4 class="mb-0">
-                                    <i class="fas fa-user-circle me-2"></i>Personal Information
-                                </h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-4">
-
-                                    <div class="col-md-4">
-
-                        <div class="form-group mb-4">
-                            <label for="name" class="form-label h5">
-                                <i class="fas fa-user me-2"></i>Name
-                            </label>
-                            <input type="text" class="form-control form-control-lg" id="name" name="name" required>
+                    <div class="form-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-user-circle"></i> Personal Information</h3>
                         </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group mb-4">
-                            <label for="age" class="form-label h5">
-                                <i class="fas fa-calendar-alt me-2"></i>Age
-                            </label>
-                            <input type="number" class="form-control form-control-lg" id="age" name="age" required>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group mb-4">
-                            <label for="gender" class="form-label h5">
-                                <i class="fas fa-venus-mars me-2"></i>Gender
-                            </label>
-                            <select class="form-select form-select-lg" id="gender" name="gender" required>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-
+                        <div class="section-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">
+                                        <i class="fas fa-user"></i> Name
+                                    </label>
+                                    <input type="text" class="form-input" id="name" name="name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="age">
+                                        <i class="fas fa-calendar-alt"></i> Age
+                                    </label>
+                                    <input type="number" class="form-input" id="age" name="age" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="gender">
+                                        <i class="fas fa-venus-mars"></i> Gender
+                                    </label>
+                                    <select class="form-input" id="gender" name="gender" required>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Contact Information Section -->
-                    <div class="col-12 mb-4">
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-light">
-                                <h4 class="mb-0">
-                                    <i class="fas fa-address-book me-2"></i>Contact Information
-                                </h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-
-                        <div class="form-group mb-4">
-                            <label for="mobile" class="form-label h5">
-                                <i class="fas fa-phone me-2"></i>Mobile
-                            </label>
-                            <input type="tel" class="form-control form-control-lg" id="mobile" name="mobile">
+                    <div class="form-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-address-book"></i> Contact Information</h3>
                         </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group mb-4">
-                            <label for="address" class="form-label h5">
-                                <i class="fas fa-map-marker-alt me-2"></i>Address
-                            </label>
-                            <textarea class="form-control form-control-lg" id="address" name="address" rows="3"></textarea>
-                        </div>
-                    </div>
-
+                        <div class="section-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="mobile">
+                                        <i class="fas fa-phone"></i> Mobile
+                                    </label>
+                                    <input type="tel" class="form-input" id="mobile" name="mobile">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="address">
+                                        <i class="fas fa-map-marker-alt"></i> Address
+                                    </label>
+                                    <textarea class="form-input" id="address" name="address" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Medical Information Section -->
-                    <div class="col-12 mb-4">
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-light">
-                                <h4 class="mb-0">
-                                    <i class="fas fa-file-medical me-2"></i>Medical Information
-                                </h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-4">
-                                    <div class="col-md-4">
-
-                        <div class="form-group mb-4">
-                            <label for="medicine" class="form-label h5">
-                                <i class="fas fa-prescription-bottle me-2"></i>Medicine
-                            </label>
-                            <textarea class="form-control form-control-lg" id="medicine" name="medicine" rows="3"></textarea>
+                    <div class="form-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-file-medical"></i> Medical Information</h3>
                         </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group mb-4">
-                            <label for="detail" class="form-label h5">
-                                <i class="fas fa-file-medical me-2"></i>Detail
-                            </label>
-                            <textarea class="form-control form-control-lg" id="detail" name="detail" rows="3"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group mb-4">
-                            <label for="note" class="form-label h5">
-                                <i class="fas fa-sticky-note me-2"></i>Note
-                            </label>
-                            <textarea class="form-control form-control-lg" id="note" name="note" rows="3"></textarea>
-                        </div>
-                    </div>
-
+                        <div class="section-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="medicine">
+                                        <i class="fas fa-prescription-bottle"></i> Medicine
+                                    </label>
+                                    <textarea class="form-input" id="medicine" name="medicine" rows="3"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="detail">
+                                        <i class="fas fa-file-medical"></i> Detail
+                                    </label>
+                                    <textarea class="form-input" id="detail" name="detail" rows="3"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="note">
+                                        <i class="fas fa-sticky-note"></i> Note
+                                    </label>
+                                    <textarea class="form-input" id="note" name="note" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Financial Information Section -->
-                    <div class="col-12 mb-4">
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-light">
-                                <h4 class="mb-0">
-                                    <i class="fas fa-money-bill-wave me-2"></i>Financial Information
-                                </h4>
+                    <div class="form-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-money-bill-wave"></i> Financial Information</h3>
+                        </div>
+                        <div class="section-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="amount">
+                                        <i class="fas fa-money-bill-wave"></i> Amount
+                                    </label>
+                                    <input type="number" step="0.01" class="form-input" id="amount" name="amount">
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-
-                        <div class="form-group mb-4">
-                            <label for="amount" class="form-label h5">
-                                <i class="fas fa-money-bill-wave me-2"></i>Amount
-                            </label>
-                            <input type="number" step="0.01" class="form-control form-control-lg" id="amount" name="amount">
                         </div>
                     </div>
-
-                
-                </div>
-
-                <div class="text-end mt-4">
-                    <button type="submit" class="btn btn-success btn-lg px-5 py-3">
-                        <i class="fas fa-save me-2"></i>Save Patient
-                    </button>
-                </div>
-            </form>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-save"></i> Save Patient
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 2rem;
+    }
+
+    .content-container {
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .navbar {
+        background: white;
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1.5rem;
+    }
+
+    .navbar-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .nav-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.75rem 1.25rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: none;
+    }
+
+    .dashboard-btn {
+        background: #4CAF50;
+        color: white;
+    }
+
+    .logout-btn {
+        background: #f44336;
+        color: white;
+    }
+
+    .nav-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-btn i {
+        margin-right: 0.5rem;
+    }
+
+    .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
+
+    .card-header {
+        background: #4CAF50;
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-title i {
+        margin-right: 0.75rem;
+        font-size: 1.25rem;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .form-section {
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-header {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .section-header h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #495057;
+        display: flex;
+        align-items: center;
+    }
+
+    .section-header h3 i {
+        margin-right: 0.5rem;
+        color: #6c757d;
+    }
+
+    .section-body {
+        padding: 1.5rem;
+        background: white;
+    }
+
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        flex: 1 0 250px;
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #495057;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .form-group label i {
+        margin-right: 0.5rem;
+        color: #6c757d;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 0.9rem;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background-color: #f8f9fa;
+        color: #495057;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: #4CAF50;
+        background-color: #fff;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    }
+
+    textarea.form-input {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 2rem;
+    }
+
+    .submit-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.9rem 2rem;
+        border-radius: 8px;
+        background: #4CAF50;
+        color: white;
+        font-size: 1rem;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .submit-btn:active {
+        transform: translateY(0);
+    }
+
+    .submit-btn i {
+        margin-right: 0.75rem;
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+        
+        .navbar, .card-header, .card-body, .section-body {
+            padding: 1rem;
+        }
+        
+        .form-group {
+            flex: 1 0 100%;
+        }
+        
+        .submit-btn {
+            width: 100%;
+        }
+    }
+</style>
 {% endblock %}
