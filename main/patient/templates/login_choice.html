@@ -2,25 +2,16 @@
 {% block content %}
 <div class="container">
     <div class="auth-container">
-        {% if not request.user.is_authenticated %}
-            <a href='{% url "login_choice" %}' class="auth-btn login-btn">
-                <i class="fas fa-sign-in-alt"></i> Login
+        <h2 class="auth-title">Select Login Type</h2>
+        <div class="btn-group">
+            <a href='{% url "doctor_login" %}' class="auth-btn doctor-btn">
+                <i class="fas fa-user-md"></i> Doctor Login
             </a>
-
-        {% else %}
-            <div class="btn-group">
-                <a href='{% url "doctor_logout" %}' class="auth-btn logout-btn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-                <a href='{% url "password_reset" %}' class="auth-btn reset-btn">
-                    <i class="fas fa-key"></i> Reset Password
-                </a>
-                <a href='{% url "doctor_dashboard" %}' class="auth-btn dashboard-btn">
-                    <i class="fas fa-tachometer-alt"></i> Doctor Dashboard
-                </a>
-            </div>
-
-        {% endif %}
+            <a href='{% url "patient_login" %}' class="auth-btn patient-btn">
+                <i class="fas fa-user-injured"></i> Patient Login
+            </a>
+            <a href="/new-patient-registration/" class="auth-btn register-btn">New Patient</a>
+        </div>
     </div>
 </div>
 
@@ -49,6 +40,12 @@
         max-width: 400px;
     }
 
+    .auth-title {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+
     .btn-group {
         display: flex;
         flex-direction: column;
@@ -68,26 +65,15 @@
         margin: 0.5rem 0;
     }
 
-    .login-btn {
-        background: #4CAF50;
+    .doctor-btn {
+        background: #3498db;
         color: white;
     }
 
-    .logout-btn {
-        background: #f44336;
+    .patient-btn {
+        background: #2ecc71;
         color: white;
     }
-
-    .reset-btn {
-        background: #2196F3;
-        color: white;
-    }
-    
-    .dashboard-btn {
-        background: #FF9800;
-        color: white;
-    }
-
 
     .auth-btn:hover {
         transform: translateY(-2px);

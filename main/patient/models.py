@@ -13,3 +13,18 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.name
+
+class Appointment(models.Model):
+    patient_name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    gender = models.CharField(max_length=10)
+    contact = models.CharField(max_length=15)
+    appointment_date = models.DateField()
+    doctor_name = models.CharField(max_length=100)
+    reason = models.TextField()
+    status = models.CharField(max_length=20, default='Pending')  # Pending, Confirmed, Rejected
+    appointment_time = models.TimeField(null=True, blank=True)
+    additional_details = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Appointment for {self.patient_name} with Dr. {self.doctor_name} on {self.appointment_date}"

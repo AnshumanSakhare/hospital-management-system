@@ -20,9 +20,11 @@
                 <a href='{% url "manage_patients" %}' class="auth-btn manage-btn">
                     <i class="fas fa-users-cog"></i> Manage Patients
                 </a>
+                <a href='{% url "patient_registration" %}' class="auth-btn register-btn">
+                    <i class="fas fa-user-edit"></i> Register Patient
+                </a>
+                <a href="/view-appointments/" class="auth-btn view-btn">View Appointments</a>
             </div>
-
-
         {% endif %}
     </div>
 </div>
@@ -96,7 +98,15 @@
         color: white;
     }
 
+    .register-btn {
+        background: #607D8B;
+        color: white;
+    }
 
+    .view-btn {
+        background: #3F51B5;
+        color: white;
+    }
 
     .auth-btn:hover {
         transform: translateY(-2px);

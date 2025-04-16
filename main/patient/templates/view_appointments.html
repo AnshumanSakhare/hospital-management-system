@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h2>Appointments</h2>
+    <a href="/doctor/dashboard/" class="auth-btn back-btn">Back to Doctor Dashboard</a>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <table class="appointments-table">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Contact</th>
+                <th>Appointment Date</th>
+                <th>Doctor Name</th>
+                <th>Reason</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.patient_name }}</td>
+                <td>{{ appointment.age }}</td>
+                <td>{{ appointment.gender }}</td>
+                <td>{{ appointment.contact }}</td>
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{ appointment.doctor_name }}</td>
+                <td>{{ appointment.reason }}</td>
+                <td>
+                    {% if appointment.status == 'Confirmed' %}
+                        <span class="status-confirmed">Confirmed</span>
+                        <form method="POST" action="/mark-appointment-complete/{{ appointment.id }}/">
+                            {% csrf_token %}
+                            <button type="submit" class="auth-btn complete-btn">Mark as Complete</button>
+                        </form>
+                    {% else %}
+                        <form method="POST" action="/update-appointment-status/{{ appointment.id }}/">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="appointment_time_{{ appointment.id }}">Select Time</label>
+                                <input type="time" id="appointment_time_{{ appointment.id }}" name="appointment_time" required>
+                            </div>
+                            <button type="submit" name="confirm" class="auth-btn confirm-btn">Confirm Appointment</button>
+                            <button type="submit" name="reject" class="auth-btn reject-btn">Reject Appointment</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container {
+        padding: 2rem;
+    }
+
+    .appointments-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+
+    .appointments-table th, .appointments-table td {
+        border: 1px solid #ddd;
+        padding: 0.8rem;
+        text-align: left;
+    }
+
+    .appointments-table th {
+        background-color: #f4f4f4;
+    }
+</style>
+{% endblock %}

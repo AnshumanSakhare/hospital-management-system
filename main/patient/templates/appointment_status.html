@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h2>Appointment Status</h2>
+    {% if appointments.exists %}
+        <table class="appointments-table">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Time</th>
+                    <th>Status</th>
+                    <th>Additional Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.doctor_name }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                    <td>{{ appointment.appointment_time|default:"Not Set" }}</td>
+                    <td>{{ appointment.status }}</td>
+                    <td>{{ appointment.additional_details|default:"None" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No appointments found.</p>
+    {% endif %}
+</div>
+
+<style>
+    .container {
+        padding: 2rem;
+    }
+
+    .appointments-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+
+    .appointments-table th, .appointments-table td {
+        border: 1px solid #ddd;
+        padding: 0.8rem;
+        text-align: left;
+    }
+
+    .appointments-table th {
+        background-color: #f4f4f4;
+    }
+</style>
+{% endblock %}
